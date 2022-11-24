@@ -1,6 +1,7 @@
 package com.parllay.tagging.taggingsdk.helper
 
 import android.os.Bundle
+import android.util.Base64
 import java.net.URLEncoder
 
 
@@ -19,14 +20,6 @@ object BundleHelper {
             val paramValue = URLEncoder.encode(extras.get(key).toString(), "UTF-8")
             paramsString = "$paramsString$key=$paramValue&"
         }
-        return paramsString
-    }
-
-    private fun removeLastChar(str: String): String {
-        var str = str
-        if (str.isNotEmpty() && str[str.length - 1] == '&') {
-            str = str.substring(0, str.length - 1)
-        }
-        return str
+        return Base64.encodeToString(paramsString.toByteArray(),Base64.DEFAULT)
     }
 }
