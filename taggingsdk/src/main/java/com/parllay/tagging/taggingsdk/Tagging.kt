@@ -25,7 +25,7 @@ class Tagging {
 
         /**
          * Used to tag a event that happens within the application
-         * @param tagId The Tag Id. You get it from https://tagging.parllay.com.
+         * @param tagId The Tag Id. You get it from https://tags.parllay.com.
          */
         @JvmStatic
         fun tagEvent(tagId: String) {
@@ -35,7 +35,7 @@ class Tagging {
         /**
          * Used to tag a event that happens within the application along with parameter that
          * needed.
-         * @param tagId The Tag Id. You get it from https://tagging.parllay.com.
+         * @param tagId The Tag Id. You get it from https://tags.parllay.com.
          * @param tagParams The Tag parameters. Any extra parameters that has to be tagged
          * for this event has to be passed as a bundle parameter.
          */

@@ -25,17 +25,16 @@ class TaggingDemoActivity : AppCompatActivity() {
         eventOne = findViewById(R.id.eventOne)
         eventOne.setOnClickListener(View.OnClickListener {
 
-            Tagging.tagEvent("tag01.tag.com")
+            Tagging.tagEvent("tag01.ctaghk.com")
         })
 
         eventTwo = findViewById(R.id.eventTwo)
         eventTwo.setOnClickListener(View.OnClickListener {
 
             val bundle = Bundle()
-            bundle.putInt("purchase_id",321321)
-            bundle.putString("purchase_category","games")
-            bundle.putString("purchase_price","19.99$")
-            Tagging.tagEvent("tag02.tag.com",bundle)
+            bundle.putString("param1","value1")
+            bundle.putString("param2","value2")
+            Tagging.tagEvent("tag02.ctaghk.com",bundle)
         })
     }
 
