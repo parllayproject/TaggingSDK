@@ -1,7 +1,7 @@
 Tags Demo Using Tagging SDK
 ===========================
 
-This is a demo app which explains the usage of [Parllay Tags](tags.parllay.com)
+This is a demo app which explains the usage of [Parllay Tags](https://tags.parllay.com)
 
 ## How to include Library
 
@@ -27,7 +27,7 @@ Add it in your root build.gradle at the end of repositories:
 
 Usage
 -----
-To use this library, initially visit [Parllay Tags](tags.parllay.com) website and complete the required steps to generate a tag url.
+To use this library, initially visit [Parllay Tags](https://tags.parllay.com) website and complete the required steps to generate a tag url.
 
 # Setup
 Initialize the library in you Application class as follows.
@@ -35,7 +35,7 @@ Initialize the library in you Application class as follows.
     Tagging.start(this)
 
 # Tagging Event Trigger
-Use the library to trigger events by using the tag urls obtained from [Parllay Tags](tags.parllay.com)
+Use the library to trigger events by using the tag urls obtained from [Parllay Tags](https://tags.parllay.com)
 
 **Without Extra Values**
 
