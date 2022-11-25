@@ -1,7 +1,7 @@
 Tags Demo Using Tagging SDK
 ===========================
 
-This is a demo app which explains the usage of [Parllay Tags](https://tags.parllay.com)
+This is a demo app which explains the integration of [Parllay Tags](https://tags.parllay.com) in an Android app.
 
 ## How to include Library
 
