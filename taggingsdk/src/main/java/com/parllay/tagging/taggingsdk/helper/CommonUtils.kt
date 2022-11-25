@@ -13,19 +13,17 @@ import java.io.*
  */
 object CommonUtils {
 
-
-
-    private fun generateInstallId(length:Int): String {
+    private fun generateInstallId(): String {
         val charPool: List<Char> = ('a'..'z') + ('0'..'9')
 
-        return (1..length)
+        return (1..10)
             .map{ kotlin.random.Random.nextInt(0, charPool.size) }
             .map(charPool::get)
             .joinToString("")
     }
 
     fun getInstallId(appContext: Context): String {
-        return readFromFile(appContext);
+        return readFromFile(appContext)
     }
 
     private fun readFromFile(context: Context): String {
@@ -35,7 +33,7 @@ object CommonUtils {
             if (inputStream != null) {
                 val inputStreamReader = InputStreamReader(inputStream)
                 val bufferedReader = BufferedReader(inputStreamReader)
-                var receiveString: String? = ""
+                var receiveString: String?
                 val stringBuilder = StringBuilder()
                 while (bufferedReader.readLine().also { receiveString = it } != null) {
                     stringBuilder.append("\n").append(receiveString)
@@ -44,7 +42,7 @@ object CommonUtils {
                 ret = stringBuilder.toString().replace("\n","")
             }
         } catch (e: FileNotFoundException) {
-            val installId:String =  generateInstallId(10)
+            val installId:String =  generateInstallId()
             writeToFile(installId,context)
             ret = installId
         }
@@ -64,10 +62,6 @@ object CommonUtils {
         appExtras.putString("timestamp", System.currentTimeMillis().toString())
         appExtras.putString("packageName",applicationContext.packageName)
         appExtras.putString("android_version",Build.VERSION.RELEASE)
-        appExtras.putString("android_device",Build.DEVICE)
-        appExtras.putString("android_model",Build.MODEL)
-        appExtras.putString("android_manufacturer",Build.MANUFACTURER)
-        appExtras.putString("android_brand",Build.BRAND)
         appExtras.putString("android_internet_type",connectivityType(applicationContext))
 
         return BundleHelper.bundleToString(appExtras)
@@ -76,16 +70,16 @@ object CommonUtils {
     fun getFinalUrl(context: Context, tagUrl: String, tagParams: Bundle): String {
         val clientParams = BundleHelper.bundleToString(tagParams)
         val deviceParams = getExtraParams(context)
-        var urlTag = ""
-        if(tagUrl.contains("http://",true)){
-            urlTag=tagUrl;
+        val urlTag = if(tagUrl.contains("https://",true) ||
+            tagUrl.contains("http://",true)){
+            tagUrl
         }else{
-            urlTag="http://$tagUrl"
+            "https://$tagUrl"
         }
         return "$urlTag?acp=$clientParams&adp=$deviceParams"
     }
 
-    fun connectivityType(context: Context): String {
+    private fun connectivityType(context: Context): String {
         val connectivityManager =
             context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
         if (connectivityManager != null && Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {

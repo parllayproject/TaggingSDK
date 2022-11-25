@@ -25,7 +25,7 @@ class TaggingDemoActivity : AppCompatActivity() {
         eventOne = findViewById(R.id.eventOne)
         eventOne.setOnClickListener(View.OnClickListener {
 
-            Tagging.tagEvent("testing.theprophetsgame.com")
+            Tagging.tagEvent("tag01.tag.com")
         })
 
         eventTwo = findViewById(R.id.eventTwo)
@@ -35,7 +35,7 @@ class TaggingDemoActivity : AppCompatActivity() {
             bundle.putInt("purchase_id",321321)
             bundle.putString("purchase_category","games")
             bundle.putString("purchase_price","19.99$")
-            Tagging.tagEvent("testing.theprophetsgame.com",bundle)
+            Tagging.tagEvent("tag02.tag.com",bundle)
         })
     }
 
