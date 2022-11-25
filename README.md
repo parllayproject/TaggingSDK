@@ -27,14 +27,15 @@ Add it in your root build.gradle at the end of repositories:
 
 Usage
 -----
+To use this library, initially visit [Parllay Tags](tags.parllay.com) website and complete the required steps to generate a tag url.
 
-#Setup
+# Setup
 Initialize the library in you Application class as follows.
 
     Tagging.start(this)
 
-#Tagging Event Trigger
-Use the library to trigger events by using the tags obtained from tags.parllay.com
+# Tagging Event Trigger
+Use the library to trigger events by using the tag urls obtained from [Parllay Tags](tags.parllay.com)
 
 **Without Extra Values**
 
