@@ -25,7 +25,8 @@ Add it in your root build.gradle at the end of repositories:
         implementation 'com.github.parllayproject:TaggingSDK:v0.1.0'
     }
 
-## Usage
+Usage
+-----
 
 #Setup
 Initialize the library in you Application class as follows.
@@ -47,7 +48,8 @@ Use the library to trigger events by using the tags obtained from tags.parllay.c
 
     Tagging.tagEvent("your.tag.url",bundle)
 
-##License
+License
+-------
     Copyright © 2023 Parllay. a division of Parllay Inc.
     
     Unless required by applicable law or agreed to in writing, software
