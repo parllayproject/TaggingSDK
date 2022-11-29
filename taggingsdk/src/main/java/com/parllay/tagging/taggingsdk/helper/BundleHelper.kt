@@ -2,7 +2,9 @@ package com.parllay.tagging.taggingsdk.helper
 
 import android.os.Bundle
 import android.util.Base64
-import java.net.URLEncoder
+import android.util.Log
+import org.json.JSONException
+import org.json.JSONObject
 
 
 /**
@@ -10,16 +12,18 @@ import java.net.URLEncoder
  * Copyright © 2023 Parllay. a division of Parllay Inc. All Rights Reserved
  */
 object BundleHelper {
+    private val TAG = BundleHelper::class.java.simpleName
+    fun bundleToString(bundle: Bundle):String{
 
-    fun bundleToString(extras: Bundle):String{
-        var paramsString =""
-        val ks = extras.keySet()
-        val iterator: Iterator<String> = ks.iterator()
-        while (iterator.hasNext()) {
-            val key = iterator.next()
-            val paramValue = URLEncoder.encode(extras.get(key).toString(), "UTF-8")
-            paramsString = "$paramsString$key=$paramValue&"
+        val json = JSONObject()
+        val keys: Set<String> = bundle.keySet()
+        for (key in keys) {
+            try {
+                json.put(key, JSONObject.wrap(bundle.get(key)))
+            } catch (t:Throwable) {
+                Log.e(TAG, "Bundle conversion error", t)
+            }
         }
-        return Base64.encodeToString(paramsString.toByteArray(),Base64.DEFAULT)
+        return Base64.encodeToString(json.toString().toByteArray(),Base64.DEFAULT)
     }
 }
