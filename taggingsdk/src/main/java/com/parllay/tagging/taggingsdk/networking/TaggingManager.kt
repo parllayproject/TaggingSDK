@@ -13,7 +13,6 @@ import kotlinx.coroutines.*
 internal object TaggingManager {
 
     private val TAG = TaggingManager::class.java.simpleName
-    private var installId:String=""
     lateinit var appInstance: Application
 
 
@@ -23,7 +22,7 @@ internal object TaggingManager {
         appInstance=application
         GlobalScope.launch() {
             try {
-                installId = CommonUtils.getInstallId(application.applicationContext)
+                CommonUtils.setInitialConfig(application.applicationContext)
             } catch (t: Throwable) {
                 Log.e(TAG, "Initialization Failed", t)
             }
@@ -31,12 +30,11 @@ internal object TaggingManager {
     }
 
     @OptIn(DelicateCoroutinesApi::class)
-    fun tagging(tagUrl:String, tagParams: Bundle){
-
+    fun tagging(tagId:String, tagParams: Bundle){
         GlobalScope.launch() {
             try {
-                val finalUrl = CommonUtils.getFinalUrl(appInstance.applicationContext,tagUrl,tagParams)
-                ConnectionClient.tagRequest("$finalUrl&iid=$installId")
+                val finalUrl = CommonUtils.getFinalUrl(appInstance.applicationContext,tagId,tagParams)
+                ConnectionClient.tagRequest("$finalUrl")
             } catch (t: Throwable) {
                 Log.e(TAG, "Tagging Failed", t)
             }

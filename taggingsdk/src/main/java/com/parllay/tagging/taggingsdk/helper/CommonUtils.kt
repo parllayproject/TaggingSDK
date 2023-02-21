@@ -1,11 +1,14 @@
 package com.parllay.tagging.taggingsdk.helper
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
 import android.os.Build
 import android.os.Bundle
+import android.provider.Settings.*
 import java.io.*
+import java.lang.System
 
 /**
  * Created by Leons Chelladurai on 17November2022
@@ -22,8 +25,14 @@ object CommonUtils {
             .joinToString("")
     }
 
-    fun getInstallId(appContext: Context): String {
-        return readFromFile(appContext)
+    @SuppressLint("HardwareIds")
+    fun setInitialConfig(appContext: Context){
+
+        CommonData.installId = readFromFile(appContext)
+        Secure.getString(appContext.contentResolver, Secure.ANDROID_ID)
+            .also { CommonData.androidId = it }
+        CommonData.appName = appContext.applicationInfo.loadLabel(appContext.packageManager).toString()
+
     }
 
     private fun readFromFile(context: Context): String {
@@ -59,24 +68,21 @@ object CommonUtils {
     private fun getExtraParams(applicationContext: Context): String {
 
         val appExtras= Bundle()
-        appExtras.putString("timestamp", System.currentTimeMillis().toString())
-        appExtras.putString("packageName",applicationContext.packageName)
+        appExtras.putString("install_id",CommonData.installId)
+        appExtras.putString("android_id",CommonData.androidId)
+        appExtras.putString("app_name",CommonData.appName)
+        appExtras.putString("package_name",applicationContext.packageName)
         appExtras.putString("android_version",Build.VERSION.RELEASE)
         appExtras.putString("android_internet_type",connectivityType(applicationContext))
 
         return BundleHelper.bundleToString(appExtras)
     }
 
-    fun getFinalUrl(context: Context, tagUrl: String, tagParams: Bundle): String {
+    fun getFinalUrl(context: Context, tagId: String, tagParams: Bundle): String {
         val clientParams = BundleHelper.bundleToString(tagParams)
         val deviceParams = getExtraParams(context)
-        val urlTag = if(tagUrl.contains("https://",true) ||
-            tagUrl.contains("http://",true)){
-            tagUrl
-        }else{
-            "https://$tagUrl"
-        }
-        return "$urlTag?acp=$clientParams&adp=$deviceParams"
+
+        return "${CommonData.tagUrl}?${CommonData.tagQueryKey}=$tagId&acp=$clientParams&adp=$deviceParams"
     }
 
     private fun connectivityType(context: Context): String {

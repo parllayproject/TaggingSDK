@@ -27,7 +27,7 @@ Add it in your root build.gradle at the end of repositories:
 
 Usage
 -----
-To use this library, initially visit [Parllay Tags](https://tags.parllay.com) website and complete the required steps to generate a tag url.
+To use this library, initially visit [Parllay Tags](https://tags.parllay.com) website and complete the required steps to generate a tag id.
 
 # Setup
 Initialize the library in you Application class as follows.
@@ -39,7 +39,7 @@ Use the library to trigger events by using the tag urls obtained from [Parllay T
 
 **Without Extra Values**
 
-    Tagging.tagEvent("your.tag.url")
+    Tagging.tagEvent("A01MAF001001")
 
 **With Extra Values**
 
@@ -47,7 +47,7 @@ Use the library to trigger events by using the tag urls obtained from [Parllay T
     bundle.putString("param1","value1")
     bundle.putString("param2","value2")
 
-    Tagging.tagEvent("your.tag.url",bundle)
+    Tagging.tagEvent("A01MAF001001",bundle)
 
 License
 -------

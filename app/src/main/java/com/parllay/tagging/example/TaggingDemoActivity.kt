@@ -15,26 +15,18 @@ import com.parllay.tagging.taggingsdk.Tagging
 class TaggingDemoActivity : AppCompatActivity() {
 
     lateinit var eventOne:Button;
-    lateinit var eventTwo:Button;
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_tagging_demo)
 
+       Tagging.tagEvent("http://8d7b4d459f84498cd8fdb79352453620.ctaghk.com")
+
 
         eventOne = findViewById(R.id.eventOne)
         eventOne.setOnClickListener(View.OnClickListener {
 
-            Tagging.tagEvent("tag01.ctaghk.com")
-        })
-
-        eventTwo = findViewById(R.id.eventTwo)
-        eventTwo.setOnClickListener(View.OnClickListener {
-
-            val bundle = Bundle()
-            bundle.putString("param1","value1")
-            bundle.putString("param2","value2")
-            Tagging.tagEvent("tag02.ctaghk.com",bundle)
+           Tagging.tagEvent("http://22a3bc1cbeb283d9fb4af1d64e992b52.ctaghk.com")
         })
     }
 
