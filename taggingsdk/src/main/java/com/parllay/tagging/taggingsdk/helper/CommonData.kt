@@ -6,6 +6,7 @@ package com.parllay.tagging.taggingsdk.helper
  */
 object CommonData {
 
+    const val TAG = "TaggingSDK"
     var installId:String=""
     var androidId:String=""
     var appName:String=""

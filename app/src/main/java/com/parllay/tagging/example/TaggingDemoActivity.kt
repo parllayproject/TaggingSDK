@@ -20,13 +20,13 @@ class TaggingDemoActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_tagging_demo)
 
-       Tagging.tagEvent("http://8d7b4d459f84498cd8fdb79352453620.ctaghk.com")
+       //Tagging.tagEvent("http://8d7b4d459f84498cd8fdb79352453620.ctaghk.com")
 
 
         eventOne = findViewById(R.id.eventOne)
         eventOne.setOnClickListener(View.OnClickListener {
 
-           Tagging.tagEvent("http://22a3bc1cbeb283d9fb4af1d64e992b52.ctaghk.com")
+           Tagging.tagEvent("A01MAF123123")
         })
     }
 

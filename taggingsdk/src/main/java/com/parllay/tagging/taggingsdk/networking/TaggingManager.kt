@@ -3,6 +3,7 @@ package com.parllay.tagging.taggingsdk.networking
 import android.app.Application
 import android.os.Bundle
 import android.util.Log
+import com.parllay.tagging.taggingsdk.helper.CommonData.TAG
 import com.parllay.tagging.taggingsdk.helper.CommonUtils
 import kotlinx.coroutines.*
 
@@ -12,7 +13,6 @@ import kotlinx.coroutines.*
  */
 internal object TaggingManager {
 
-    private val TAG = TaggingManager::class.java.simpleName
     lateinit var appInstance: Application
 
 
